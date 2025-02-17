@@ -72,7 +72,7 @@ function soleaspay_link($params)
     $currencyCode = $params['currency'];
 
     // Set the payment URL based on test mode
-    $paymentUrl = $testMode ? "https://test.soleaspay.com/api/pay" : "https://checkout.soleaspay.com/api/pay";
+    $paymentUrl = $testMode ? "https://test.soleaspay.com/api/pay" : "https://checkout.soleaspay.com";
 
     // Prepare the data for the payment request
     $postfields = array(
