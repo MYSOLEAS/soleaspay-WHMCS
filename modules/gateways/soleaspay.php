@@ -43,7 +43,7 @@ function soleaspay_config()
             'Type' => 'text',
             'Size' => '40',
             'Default' => '',
-            'Description' => 'Enter the name of your shop',
+            'Description' => 'Enter your business name here',
         ),
         'testMode' => array(
             'FriendlyName' => 'Test Mode',
@@ -68,21 +68,31 @@ function soleaspay_link($params)
     
     // Invoice Parameters
     $invoiceId = $params['invoiceid'];
+    $description = $params["description"];
     $amount = $params['amount'];
     $currencyCode = $params['currency'];
+
+    // Client Parameters
+    $customer = $params['clientdetails']['firstname'].' '.$params['clientdetails']['lastname'];
+    $email = $params['clientdetails']['email'];
+    $phone = $params['clientdetails']['phonenumber'];
 
     // Set the payment URL based on test mode
     $paymentUrl = $testMode ? "https://test.soleaspay.com/api/pay" : "https://checkout.soleaspay.com";
 
     // Prepare the data for the payment request
     $postfields = array(
-        'api_key' => $apiKey,
-        'shop_name' => $shopName,
-        'invoice_id' => $invoiceId,
+        'apiKey' => $apiKey,
+        'shopName' => $shopName,
+        'orderId' => $invoiceId,
+        'description' => $description,
         'amount' => $amount,
         'currency' => $currencyCode,
-        'callback_url' => $params['systemurl'] . '/modules/gateways/callback/soleaspay.php', // URL to receive updates
-        'return_url' => $params['returnurl'], // URL to redirect user back after payment
+        'successUrl' => $params['systemurl'] . '/modules/gateways/callback/soleaspay.php', // URL to receive updates
+        'failureUrl' => $params['returnurl'], // URL to redirect user back after payment
+        'customer[name]' => $customer,
+        'customer[email]' => $email,
+        'customer[phone]' => $phone
     );
 
     // Generate the payment form HTML
