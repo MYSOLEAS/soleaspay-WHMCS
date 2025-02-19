@@ -38,13 +38,6 @@ function soleaspay_config()
             'Default' => '',
             'Description' => 'Enter your SoleasPay API Key here',
         ),
-        'shopName' => array(
-            'FriendlyName' => 'Shop Name',
-            'Type' => 'text',
-            'Size' => '40',
-            'Default' => '',
-            'Description' => 'Enter your business name here',
-        ),
         'testMode' => array(
             'FriendlyName' => 'Test Mode',
             'Type' => 'yesno',
@@ -63,7 +56,7 @@ function soleaspay_link($params)
 {
     // Gateway Configuration Parameters
     $apiKey = $params['apiKey'];
-    $shopName = $params['shopName'];
+    $shopName = $params['companyname'];
     $testMode = $params['testMode'];
     
     // Invoice Parameters
@@ -96,7 +89,7 @@ function soleaspay_link($params)
     );
 
     // Generate the payment form HTML
-    $htmlOutput = '<form method="post" action="' . esc_url($paymentUrl) . '">';
+    $htmlOutput = '<form method="post" action="' .$paymentUrl. '">';
     foreach ($postfields as $k => $v) {
         $htmlOutput .= '<input type="hidden" name="' . htmlspecialchars($k) . '" value="' . htmlspecialchars($v) . '" />';
     }

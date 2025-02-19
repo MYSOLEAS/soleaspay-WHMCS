@@ -1,26 +1,27 @@
 {
-    "name": "whmcs/sample-gateway-module",
-    "description": "Sample Third Party Payment Gateway Module for the WHMCS Billing Automation Platform",
+    "name": "whmcs/soleaspay-gateway-module",
+    "description": "SoleasPay Payment Gateway Module for the WHMCS Billing Automation Platform",
     "keywords": [
-        "whmcs",
+        "soleaspay",
         "web host automation platform",
         "third party gateway module",
         "gateway module",
-        "third party gateway"
+        "third party gateway",
+        "payment gateway"
     ],
-    "homepage": "http://www.whmcs.com/",
+    "homepage": "https://soleaspay.com/",
     "license": "MIT",
     "authors": [
         {
-            "name": "WHMCS Development Team",
-            "email": "development@whmcs.com",
-            "homepage": "http://www.whmcs.com/",
+            "name": "MYSOLEAS",
+            "email": "dev@mysoleas.com",
+            "homepage": "https://www.mysoleas.com/",
             "role": "Developer"
         }
     ],
     "support": {
-        "email": "support@whmcs.com",
-        "forum": "http://forums.whmcs.com/",
-        "wiki": "http://docs.whmcs.com/"
+        "email": "support@mysoleas.com",
+        "forum": "https://mysoleas.com/blog",
+        "wiki": "https://docs.mysoleas.com/"
     }
 }

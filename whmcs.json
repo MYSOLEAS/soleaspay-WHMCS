@@ -1,12 +1,12 @@
 {
     "schema": "1.0",
     "type": "whmcs-gateways",
-    "name": "soleaspay-gateway",
+    "name": "soleaspay-gateway-module",
     "license": "MIT",
     "category": "gateway",
     "description": {
         "name": "SoleasPay Payment Gateway",
-        "tagline": "Payment Gateway modules allow you to integrate payment solutions with the WHMCS platform.",
+        "tagline": "SoleasPay Payment Gateway modules allow you to integrate payment solutions with the WHMCS platform.",
         "long": "The sample files here demonstrate how we suggest a Third Party Payment Gateway module for WHMCS be structured and implemented.",
         "features": [
             "Provide both client and admin facing user interfaces",
