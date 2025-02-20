@@ -1,4 +1,27 @@
 <?php
+/**
+ * SoleasPay Payment Gateway Module
+ *
+ * SoleasPay Payment Gateway modules allow you to integrate payment solutions with the WHMCS platform.
+ *
+ * The SoleasPay Payment module help merchand to collect funds from theirs customer accross more than 100 currencies in many countries.
+ *
+ * Within the module itself, all functions must be prefixed with the module
+ * filename, followed by an underscore, and then the function name. For this
+ * example file, the filename is "soleaspay" and therefore all functions
+ * begin "soleaspay_".
+ *
+ * If your module or third party API does not support a given function, you
+ * should not define that function within your module. Only the _config
+ * function is required.
+ *
+ * For more information, please refer to the online documentation.
+ *
+ * @see https://soleaspay.com/
+ *
+ * @copyright Copyright (c) MYSOLEAS 2021
+ * @license MIT License
+ */
 
 if (!defined("WHMCS")) {
     die("This file cannot be accessed directly");
@@ -13,7 +36,7 @@ function soleaspay_MetaData()
 {
     return array(
         'DisplayName' => 'SoleasPay Payment Gateway',
-        'APIVersion' => '1.0',
+        'APIVersion' => '1.1',
         'DisableLocalCreditCardInput' => true,
         'TokenisedStorage' => false,
     );
@@ -31,12 +54,19 @@ function soleaspay_config()
             'Type' => 'System',
             'Value' => 'SoleasPay Payment Gateway',
         ),
-        'apiKey' => array(
+        'accountID' => array(
             'FriendlyName' => 'API Key',
             'Type' => 'text',
             'Size' => '40',
             'Default' => '',
-            'Description' => 'Enter your SoleasPay API Key here',
+            'Description' => 'Enter your SoleasPay API Key here to accept payments',
+        ),
+        'secretKey' => array(
+            'FriendlyName' => 'Secret Key',
+            'Type' => 'password',
+            'Size' => '40',
+            'Default' => '',
+            'Description' => 'Enter your SoleasPay secret key here for refund purposes',
         ),
         'testMode' => array(
             'FriendlyName' => 'Test Mode',
@@ -55,7 +85,7 @@ function soleaspay_config()
 function soleaspay_link($params)
 {
     // Gateway Configuration Parameters
-    $apiKey = $params['apiKey'];
+    $apiKey = $params['accountID'];
     $shopName = $params['companyname'];
     $testMode = $params['testMode'];
     
@@ -91,7 +121,7 @@ function soleaspay_link($params)
     // Generate the payment form HTML
     $htmlOutput = '<form method="post" action="' .$paymentUrl. '">';
     foreach ($postfields as $k => $v) {
-        $htmlOutput .= '<input type="hidden" name="' . htmlspecialchars($k) . '" value="' . htmlspecialchars($v) . '" />';
+        $htmlOutput .= '<input type="hidden" name="' . htmlspecialchars($k) . '" value="' . urlencode($v) . '" />';
     }
     $htmlOutput .= '<input type="submit" value="' . htmlspecialchars($params['langpaynow']) . '" />';
     $htmlOutput .= '</form>';

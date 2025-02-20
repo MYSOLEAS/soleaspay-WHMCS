@@ -7,7 +7,7 @@
     "description": {
         "name": "SoleasPay Payment Gateway",
         "tagline": "SoleasPay Payment Gateway modules allow you to integrate payment solutions with the WHMCS platform.",
-        "long": "The sample files here demonstrate how we suggest a Third Party Payment Gateway module for WHMCS be structured and implemented.",
+        "long": "The SoleasPay Payment module help merchand to collect funds from theirs customer accross more than 100 currencies in many countries.",
         "features": [
             "Provide both client and admin facing user interfaces",
             "Utilize hook functionality within WHMCS"
